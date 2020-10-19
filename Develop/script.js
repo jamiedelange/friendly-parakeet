@@ -1,6 +1,3 @@
-// Assignment code here
-
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -23,8 +20,6 @@ function generatePassword() {
   var nums = "1234567890";
   var alphabet = "";
 
-  console.log("aaaaaaaa");
-
   var numbers = charNum();
   var symbols = charSymbol();
   var upper = charUpper();
@@ -37,9 +32,6 @@ function generatePassword() {
     upper = charUpper();
     lower = charLower();
   }
-  
-
-  console.log("aaaaaaaa");
 
     if (numbers) {
       alphabet += nums;
@@ -62,21 +54,13 @@ function generatePassword() {
       var index = Math.floor(Math.random() * alphabet.length);
         var char = alphabet.charAt(index);
           password += char;
-          console.log(index);
     }
-    console.log(password);
     
     return password
 }
 
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-
 
 // request desired password length
 var charLength = function() {
@@ -136,7 +120,3 @@ var charSymbol = function() {
     }
     return charSymbolConfirm
 }
-
-
-
-
