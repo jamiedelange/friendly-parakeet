@@ -8,9 +8,9 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
 var password = generatePassword();
 
-  var passwordText = document.querySelector("#password");
+  var passwordText = document.getElementById("pwbox");
 
-  passwordText.value = password;
+  passwordText.innerText = password;
   console.log(password);
 }
 
@@ -29,6 +29,15 @@ function generatePassword() {
   var symbols = charSymbol();
   var upper = charUpper();
   var lower = charLower();
+
+  if (!numbers && !symbols && !upper && !lower) {
+    window.alert("Please select at least one criteria");
+    numbers = charNum();
+    symbols = charSymbol();
+    upper = charUpper();
+    lower = charLower();
+  }
+  
 
   console.log("aaaaaaaa");
 
@@ -53,10 +62,11 @@ function generatePassword() {
       var index = Math.floor(Math.random() * alphabet.length);
         var char = alphabet.charAt(index);
           password += char;
-          console.log("loop");
+          console.log(index);
     }
+    console.log(password);
     
-    return password;
+    return password
 }
 
 
@@ -72,12 +82,13 @@ generateBtn.addEventListener("click", writePassword);
 var charLength = function() {
   var charLengthPrompt = window.prompt("How many characters do you want your password to be? Choose any number between 8 and 128");
   charLengthPrompt = parseInt(charLengthPrompt);
-    if (charLengthPrompt < 8 || charLengthPrompt > 128) {
+    if (charLengthPrompt < 8 || charLengthPrompt > 128 || Number.isNaN(charLengthPrompt)) {
       window.alert("Invalid input. Please enter a number between 8 and 128.");
       charLength();
     } else {
       window.alert("Your password will be " + charLengthPrompt + " characters long.");
      // console.log(parseInt(charLengthPrompt));
+     return charLengthPrompt
     }
 }
 
@@ -90,6 +101,7 @@ var charUpper = function() {
     } else {
       window.alert("Upper case characters will not be allowed.");
     }
+    return charUpperConfirm
 }
 
 // lower case yes/no
@@ -100,6 +112,7 @@ var charLower = function() {
     } else {
       window.alert("Lower case characters will not be allowed.");
     }
+    return charLowerConfirm
 }
 
 // numbers yes/no
@@ -110,6 +123,7 @@ var charNum = function() {
     } else {
       window.alert("Numbers will not be allowed.");
     }
+    return charNumPrompt
 }
 
 // symbols yes/no
@@ -120,6 +134,7 @@ var charSymbol = function() {
     } else {
       window.alert("Symbols will not be allowed.");
     }
+    return charSymbolConfirm
 }
 
 
